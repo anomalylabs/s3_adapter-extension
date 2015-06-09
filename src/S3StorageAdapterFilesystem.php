@@ -4,8 +4,9 @@ use Anomaly\ConfigurationModule\Configuration\Contract\ConfigurationRepositoryIn
 use Anomaly\FilesModule\Adapter\StorageAdapterFilesystem;
 use Anomaly\FilesModule\Disk\Contract\DiskInterface;
 use Anomaly\Streams\Platform\Application\Application;
+use Aws\S3\S3Client;
 use Illuminate\Filesystem\FilesystemManager;
-use League\Flysystem\Adapter\S3;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
 
 /**
  * Class S3StorageAdapterFilesystem
@@ -36,22 +37,32 @@ class S3StorageAdapterFilesystem
             $disk->getSlug(),
             function () use ($disk, $application, $configuration) {
 
-                $mode = $configuration->get(
-                    'anomaly.extension.s3_storage_adapter::privacy',
-                    $disk->getSlug(),
-                    'public'
-                );
-
-                if ($mode === 'private') {
-                    $method = 'getStoragePath';
-                } else {
-                    $method = 'getAssetsPath';
-                }
-
                 return new StorageAdapterFilesystem(
                     $disk,
-                    new S3(
-                        $application->{$method}("streams/files/{$disk->getSlug()}")
+                    new AwsS3Adapter(
+                        S3Client::factory(
+                            [
+                                'credentials' => [
+                                    'key'    => $configuration->get(
+                                        'anomaly.extension.s3_storage_adapter::access_key',
+                                        $disk->getSlug()
+                                    ),
+                                    'secret' => $configuration->get(
+                                        'anomaly.extension.s3_storage_adapter::secret_key',
+                                        $disk->getSlug()
+                                    ),
+                                ],
+                                'region'      => $configuration->get(
+                                    'anomaly.extension.s3_storage_adapter::region',
+                                    $disk->getSlug()
+                                )
+                            ]
+                        ),
+                        $configuration->get(
+                            'anomaly.extension.s3_storage_adapter::bucket',
+                            $disk->getSlug()
+                        ),
+                        $disk->getSlug()
                     )
                 );
             }
