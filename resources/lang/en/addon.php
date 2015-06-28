@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'name'        => 'S3 Storage Adapter',
-    'description' => 'A s3 storage adapter for the files module.'
+    'name'        => 'S3 Adapter',
+    'description' => 'An Amazon S3 adapter for the files module.'
 ];

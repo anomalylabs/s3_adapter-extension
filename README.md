@@ -1,2 +1,3 @@
-# s3_storage_adapter-extension
-An Amazon S3 storage adapter for the Files module.
+# S3 Adapter
+
+An Amazon S3 adapter for the Files module.

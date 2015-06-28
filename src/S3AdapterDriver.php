@@ -1,4 +1,4 @@
-<?php namespace Anomaly\S3StorageAdapterExtension;
+<?php namespace Anomaly\S3AdapterExtension;
 
 use Anomaly\ConfigurationModule\Configuration\Contract\ConfigurationRepositoryInterface;
 use Anomaly\FilesModule\Adapter\AdapterFilesystem;
@@ -7,47 +7,63 @@ use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 
 /**
- * Class S3StorageAdapterDriver
+ * Class S3AdapterDriver
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\S3StorageAdapterExtension
+ * @package       Anomaly\S3AdapterExtension
  */
-class S3StorageAdapterDriver
+class S3AdapterDriver
 {
+
+    /**
+     * The configuration repository.
+     *
+     * @var ConfigurationRepositoryInterface
+     */
+    protected $configuration;
+
+    /**
+     * Create a new S3AdapterDriver instance.
+     *
+     * @param ConfigurationRepositoryInterface $configuration
+     */
+    function __construct(ConfigurationRepositoryInterface $configuration)
+    {
+        $this->configuration = $configuration;
+    }
 
     /**
      * Return the configured filesystem driver.
      *
-     * @param ConfigurationRepositoryInterface $configuration
-     * @param DiskInterface                    $disk
+     * @param DiskInterface $disk
      * @return AdapterFilesystem
      */
-    public function make(ConfigurationRepositoryInterface $configuration, DiskInterface $disk)
+    public function make(DiskInterface $disk)
     {
         return new AdapterFilesystem(
             new AwsS3Adapter(
                 new S3Client(
                     [
                         'credentials' => [
-                            'key'    => $configuration->get(
+                            'key'    => $this->configuration->get(
                                 'anomaly.extension.s3_storage_adapter::access_key',
                                 $disk->getSlug()
                             ),
-                            'secret' => $configuration->get(
+                            'secret' => $this->configuration->get(
                                 'anomaly.extension.s3_storage_adapter::secret_key',
                                 $disk->getSlug()
                             ),
                         ],
-                        'region'      => $configuration->get(
+                        'region'      => $this->configuration->get(
                             'anomaly.extension.s3_storage_adapter::region',
                             $disk->getSlug()
                         ),
                         'version'     => '2006-03-01'
                     ]
                 ),
-                $configuration->get(
+                $this->configuration->get(
                     'anomaly.extension.s3_storage_adapter::bucket',
                     $disk->getSlug()
                 ),

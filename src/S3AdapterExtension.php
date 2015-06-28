@@ -1,16 +1,16 @@
-<?php namespace Anomaly\S3StorageAdapterExtension;
+<?php namespace Anomaly\S3AdapterExtension;
 
 use Anomaly\FilesModule\Adapter\AdapterExtension;
 
 /**
- * Class S3StorageAdapterExtension
+ * Class S3AdapterExtension
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\S3StorageAdapterExtension
+ * @package       Anomaly\S3AdapterExtension
  */
-class S3StorageAdapterExtension extends AdapterExtension
+class S3AdapterExtension extends AdapterExtension
 {
 
     /**
