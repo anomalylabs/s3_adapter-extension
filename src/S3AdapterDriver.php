@@ -42,7 +42,7 @@ class S3AdapterDriver
      */
     public function make(DiskInterface $disk)
     {
-        return new AdapterFilesystem(
+        return (new AdapterFilesystem(
             new AwsS3Adapter(
                 new S3Client(
                     [
@@ -69,6 +69,6 @@ class S3AdapterDriver
                 ),
                 $disk->getSlug()
             )
-        );
+        ))->setDisk($disk);
     }
 }
