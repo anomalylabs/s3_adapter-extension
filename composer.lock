@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b4a3d690768f570acdf312bb98c51b38",
+    "hash": "ddac324528b2d682de9c6497cd0b2ec1",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "dev-master",
+            "version": "3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "209f327b1d9d18cef4ff5147595a08e11f5433a2"
+                "reference": "899ee8b74eedf87d70d2797cb4add7fe22940d51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/209f327b1d9d18cef4ff5147595a08e11f5433a2",
-                "reference": "209f327b1d9d18cef4ff5147595a08e11f5433a2",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/899ee8b74eedf87d70d2797cb4add7fe22940d51",
+                "reference": "899ee8b74eedf87d70d2797cb4add7fe22940d51",
                 "shasum": ""
             },
             "require": {
@@ -76,31 +76,31 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-06-08 23:16:06"
+            "time": "2015-06-24 23:29:34"
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "dev-master",
+            "version": "6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "a1c986a4bc470a0959a2b1d5bc3e5b945a72dcb5"
+                "reference": "f992b7b487a816c957d317442bed4966409873e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/a1c986a4bc470a0959a2b1d5bc3e5b945a72dcb5",
-                "reference": "a1c986a4bc470a0959a2b1d5bc3e5b945a72dcb5",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f992b7b487a816c957d317442bed4966409873e0",
+                "reference": "f992b7b487a816c957d317442bed4966409873e0",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/promises": "~1.0",
-                "guzzlehttp/psr7": "~1.0",
+                "guzzlehttp/promises": "^1.0.0",
+                "guzzlehttp/psr7": "^1.0.0",
                 "php": ">=5.5.0"
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "~4.0",
-                "psr/log": "~1.0"
+                "phpunit/phpunit": "^4.0",
+                "psr/log": "^1.0"
             },
             "type": "library",
             "extra": {
@@ -138,20 +138,20 @@
                 "rest",
                 "web service"
             ],
-            "time": "2015-06-03 19:13:27"
+            "time": "2015-05-27 16:57:51"
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "dev-master",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "61f950b4e8bed600f0c54e7a69e9e085bb5e76a9"
+                "reference": "2ee5bc7f1a92efecc90da7f6711a53a7be26b5b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/61f950b4e8bed600f0c54e7a69e9e085bb5e76a9",
-                "reference": "61f950b4e8bed600f0c54e7a69e9e085bb5e76a9",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/2ee5bc7f1a92efecc90da7f6711a53a7be26b5b7",
+                "reference": "2ee5bc7f1a92efecc90da7f6711a53a7be26b5b7",
                 "shasum": ""
             },
             "require": {
@@ -189,20 +189,20 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2015-05-28 00:34:40"
+            "time": "2015-06-24 16:16:25"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "dev-master",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "e4d917d5f1304af62898f6dbd579dae9912a8b0c"
+                "reference": "af0e1758de355eb113917ad79c3c0e3604bce4bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/e4d917d5f1304af62898f6dbd579dae9912a8b0c",
-                "reference": "e4d917d5f1304af62898f6dbd579dae9912a8b0c",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/af0e1758de355eb113917ad79c3c0e3604bce4bd",
+                "reference": "af0e1758de355eb113917ad79c3c0e3604bce4bd",
                 "shasum": ""
             },
             "require": {
@@ -247,20 +247,20 @@
                 "stream",
                 "uri"
             ],
-            "time": "2015-05-29 18:21:02"
+            "time": "2015-06-24 19:55:15"
         },
         {
             "name": "league/flysystem",
-            "version": "dev-master",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "3b1077f6f4dd04b974fc9479660f6681942db687"
+                "reference": "56862959b45131ad33e5a7727a25db19f2cf090b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/3b1077f6f4dd04b974fc9479660f6681942db687",
-                "reference": "3b1077f6f4dd04b974fc9479660f6681942db687",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/56862959b45131ad33e5a7727a25db19f2cf090b",
+                "reference": "56862959b45131ad33e5a7727a25db19f2cf090b",
                 "shasum": ""
             },
             "require": {
@@ -331,7 +331,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-06-08 21:31:19"
+            "time": "2015-06-07 21:27:37"
         },
         {
             "name": "league/flysystem-aws-s3-v3",
@@ -339,12 +339,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-aws-s3-v3.git",
-                "reference": "23703192d3b577d8d60786e4e322ad5c6f3da6f6"
+                "reference": "ca73c3339ef37de82b511ab9e5d693b56c6f8780"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/23703192d3b577d8d60786e4e322ad5c6f3da6f6",
-                "reference": "23703192d3b577d8d60786e4e322ad5c6f3da6f6",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/ca73c3339ef37de82b511ab9e5d693b56c6f8780",
+                "reference": "ca73c3339ef37de82b511ab9e5d693b56c6f8780",
                 "shasum": ""
             },
             "require": {
@@ -378,7 +378,7 @@
                 }
             ],
             "description": "Flysystem adapter for the AWS S3 SDK v3.x",
-            "time": "2015-06-06 19:12:32"
+            "time": "2015-06-16 21:13:42"
         },
         {
             "name": "mtdowling/jmespath.php",
@@ -437,7 +437,7 @@
         },
         {
             "name": "psr/http-message",
-            "version": "dev-master",
+            "version": "1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-message.git",
@@ -487,7 +487,7 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
         "league/flysystem-aws-s3-v3": 20
     },

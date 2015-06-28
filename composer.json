@@ -14,14 +14,12 @@
     "autoload": {
         "psr-4": {
             "Anomaly\\S3StorageAdapterExtension\\": "src/",
-            "League\\Flysystem\\AwsS3v3\\": "vendor/league/flysystem-aws-s3-v3/src/",
-            "Aws\\": "vendor/aws/aws-sdk-php/src/"
+            "League\\Flysystem\\AwsS3v3\\": "vendor/league/flysystem-aws-s3-v3/src/"
         }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
