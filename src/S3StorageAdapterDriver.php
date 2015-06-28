@@ -28,7 +28,7 @@ class S3StorageAdapterDriver
     {
         return new AdapterFilesystem(
             new AwsS3Adapter(
-                S3Client::factory(
+                new S3Client(
                     [
                         'credentials' => [
                             'key'    => $configuration->get(
