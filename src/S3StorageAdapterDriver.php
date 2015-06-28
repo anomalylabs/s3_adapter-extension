@@ -4,7 +4,7 @@ use Anomaly\ConfigurationModule\Configuration\Contract\ConfigurationRepositoryIn
 use Anomaly\FilesModule\Adapter\AdapterFilesystem;
 use Anomaly\FilesModule\Disk\Contract\DiskInterface;
 use Aws\S3\S3Client;
-use League\Flysystem\AwsS3v2\AwsS3Adapter;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
 
 /**
  * Class S3StorageAdapterDriver
@@ -43,7 +43,8 @@ class S3StorageAdapterDriver
                         'region'      => $configuration->get(
                             'anomaly.extension.s3_storage_adapter::region',
                             $disk->getSlug()
-                        )
+                        ),
+                        'version'     => '2006-03-01'
                     ]
                 ),
                 $configuration->get(
