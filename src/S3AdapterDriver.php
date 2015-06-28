@@ -48,23 +48,23 @@ class S3AdapterDriver
                     [
                         'credentials' => [
                             'key'    => $this->configuration->get(
-                                'anomaly.extension.s3_storage_adapter::access_key',
+                                'anomaly.extension.s3_adapter::access_key',
                                 $disk->getSlug()
                             ),
                             'secret' => $this->configuration->get(
-                                'anomaly.extension.s3_storage_adapter::secret_key',
+                                'anomaly.extension.s3_adapter::secret_key',
                                 $disk->getSlug()
                             ),
                         ],
                         'region'      => $this->configuration->get(
-                            'anomaly.extension.s3_storage_adapter::region',
+                            'anomaly.extension.s3_adapter::region',
                             $disk->getSlug()
                         ),
                         'version'     => '2006-03-01'
                     ]
                 ),
                 $this->configuration->get(
-                    'anomaly.extension.s3_storage_adapter::bucket',
+                    'anomaly.extension.s3_adapter::bucket',
                     $disk->getSlug()
                 ),
                 $disk->getSlug()
