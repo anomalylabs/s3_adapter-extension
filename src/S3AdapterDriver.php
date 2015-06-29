@@ -66,7 +66,7 @@ class S3AdapterDriver
                             'anomaly.extension.s3_adapter::region',
                             $disk->getSlug()
                         ),
-                        'version'     => '2012-11-05'
+                        'version'     => 'latest'
                     ]
                 ),
                 $this->configuration->get(
