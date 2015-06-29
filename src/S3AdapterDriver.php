@@ -50,7 +50,7 @@ class S3AdapterDriver
         return new AdapterFilesystem(
             $disk,
             new AwsS3Adapter(
-                new S3Client(
+                S3Client::factory(
                     [
                         'credentials' => [
                             'key'    => $this->configuration->get(
