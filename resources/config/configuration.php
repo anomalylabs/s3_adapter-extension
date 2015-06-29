@@ -28,10 +28,7 @@ return [
     ],
     'bucket'     => [
         'required' => true,
-        'type'     => 'anomaly.field_type.text',
-        'rules'    => [
-            'alpha'
-        ]
+        'type'     => 'anomaly.field_type.text'
     ],
     'use_path'   => [
         'type'   => 'anomaly.field_type.boolean',
