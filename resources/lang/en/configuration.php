@@ -16,5 +16,9 @@ return [
     'bucket'     => [
         'label'        => 'Bucket',
         'instructions' => 'Enter your S3 bucket name.'
+    ],
+    'use_path'   => [
+        'label'        => 'Prefix Path',
+        'instructions' => 'When enabled the disk slug will be used as a path prefix.'
     ]
 ];

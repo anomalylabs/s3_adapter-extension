@@ -42,6 +42,11 @@ class S3AdapterDriver
      */
     public function make(DiskInterface $disk)
     {
+        $prefix = $this->configuration->get(
+            'anomaly.extension.s3_adapter::prefix_path',
+            $disk->getSlug()
+        );
+
         return new AdapterFilesystem(
             $disk,
             new AwsS3Adapter(
@@ -68,7 +73,7 @@ class S3AdapterDriver
                     'anomaly.extension.s3_adapter::bucket',
                     $disk->getSlug()
                 ),
-                $disk->getSlug()
+                $prefix ? $disk->getSlug() : null
             )
         );
     }
