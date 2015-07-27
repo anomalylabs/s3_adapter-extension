@@ -3,11 +3,11 @@
 return [
     'access_key' => [
         'required' => true,
-        'type'     => 'anomaly.field_type.text'
+        'type'     => 'anomaly.field_type.encrypted'
     ],
     'secret_key' => [
         'required' => true,
-        'type'     => 'anomaly.field_type.text'
+        'type'     => 'anomaly.field_type.encrypted'
     ],
     'region'     => [
         'required' => true,

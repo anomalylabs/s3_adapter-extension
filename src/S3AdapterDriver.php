@@ -56,13 +56,13 @@ class S3AdapterDriver
                             'key'    => $this->configuration->get(
                                 'anomaly.extension.s3_adapter::access_key',
                                 $disk->getSlug()
-                            ),
+                            )->decrypted(),
                             'secret' => $this->configuration->get(
                                 'anomaly.extension.s3_adapter::secret_key',
                                 $disk->getSlug()
-                            ),
+                            )->decrypted(),
                         ],
-                        'region'      => $this->configuration->get(
+                        'region'      => $this->configuration->value(
                             'anomaly.extension.s3_adapter::region',
                             $disk->getSlug()
                         ),
