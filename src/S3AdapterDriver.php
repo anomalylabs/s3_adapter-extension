@@ -53,16 +53,16 @@ class S3AdapterDriver
                 new S3Client(
                     [
                         'credentials' => [
-                            'key'    => $this->configuration->get(
+                            'key'    => $this->configuration->field(
                                 'anomaly.extension.s3_adapter::access_key',
                                 $disk->getSlug()
                             )->decrypted(),
-                            'secret' => $this->configuration->get(
+                            'secret' => $this->configuration->field(
                                 'anomaly.extension.s3_adapter::secret_key',
                                 $disk->getSlug()
                             )->decrypted(),
                         ],
-                        'region'      => $this->configuration->value(
+                        'region'      => $this->configuration->get(
                             'anomaly.extension.s3_adapter::region',
                             $disk->getSlug()
                         ),
