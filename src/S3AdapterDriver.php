@@ -42,10 +42,7 @@ class S3AdapterDriver
      */
     public function make(DiskInterface $disk)
     {
-        $prefix = $this->configuration->get(
-            'anomaly.extension.s3_adapter::prefix_path',
-            $disk->getSlug()
-        );
+        $prefix = $this->configuration->get('anomaly.extension.s3_adapter::use_path', $disk->getSlug());
 
         return new AdapterFilesystem(
             $disk,
@@ -53,11 +50,11 @@ class S3AdapterDriver
                 new S3Client(
                     [
                         'credentials' => [
-                            'key'    => $this->configuration->field(
+                            'key'    => $this->configuration->value(
                                 'anomaly.extension.s3_adapter::access_key',
                                 $disk->getSlug()
                             )->decrypted(),
-                            'secret' => $this->configuration->field(
+                            'secret' => $this->configuration->value(
                                 'anomaly.extension.s3_adapter::secret_key',
                                 $disk->getSlug()
                             )->decrypted(),
@@ -65,15 +62,15 @@ class S3AdapterDriver
                         'region'      => $this->configuration->get(
                             'anomaly.extension.s3_adapter::region',
                             $disk->getSlug()
-                        ),
+                        )->getValue(),
                         'version'     => '2006-03-01'
                     ]
                 ),
                 $this->configuration->get(
                     'anomaly.extension.s3_adapter::bucket',
                     $disk->getSlug()
-                ),
-                $prefix ? $disk->getSlug() : null
+                )->getValue(),
+                $prefix->getValue() ? $disk->getSlug() : null
             )
         );
     }
