@@ -40,11 +40,6 @@ class S3AdapterIntegrator
      */
     public function integrate(DiskInterface $disk, AdapterFilesystem $driver)
     {
-        $this->manager->extend(
-            $disk->getSlug(),
-            function () use ($driver) {
-                return $driver;
-            }
-        );
+
     }
 }
