@@ -17,8 +17,9 @@ return [
         'label'        => 'Bucket',
         'instructions' => 'Enter your S3 bucket name.'
     ],
-    'use_path'   => [
-        'label'        => 'Prefix Path',
-        'instructions' => 'When enabled the disk slug will be used as a path prefix.'
+    'prefix'     => [
+        'label'        => 'Use disk slug as prefix?',
+        'instructions' => 'If disabled, the bucket\'s root directory will be used.',
+        'warning'      => 'Disabling may cause file collisions if the same bucket is used for multiple disks.'
     ]
 ];

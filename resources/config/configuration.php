@@ -30,7 +30,7 @@ return [
         'required' => true,
         'type'     => 'anomaly.field_type.text'
     ],
-    'use_path'   => [
+    'prefix'     => [
         'type'   => 'anomaly.field_type.boolean',
         'config' => [
             'default_value' => true
