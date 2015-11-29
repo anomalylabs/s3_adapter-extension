@@ -16,10 +16,5 @@
             "Anomaly\\S3AdapterExtension\\": "src/",
             "League\\Flysystem\\AwsS3v3\\": "vendor/league/flysystem-aws-s3-v3/src/"
         }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-1.0/master": "1.0.x-dev"
-        }
     }
 }
