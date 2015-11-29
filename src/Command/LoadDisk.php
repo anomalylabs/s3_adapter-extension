@@ -46,7 +46,7 @@ class LoadDisk implements SelfHandling
         FilesystemManager $filesystem,
         MountManager $manager
     ) {
-        $prefix = $configuration->value('anomaly.extension.s3_adapter::prefix', true);
+        $prefix = $configuration->value('anomaly.extension.s3_adapter::prefix', $this->disk->getSlug(), true);
 
         /* @var EncryptedFieldTypePresenter $key */
         $key = $configuration->presenter('anomaly.extension.s3_adapter::access_key', $this->disk->getSlug());
