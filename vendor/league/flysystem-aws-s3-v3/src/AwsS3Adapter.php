@@ -2,7 +2,6 @@
 
 namespace League\Flysystem\AwsS3v3;
 
-use ArrayIterator;
 use Aws\Result;
 use Aws\S3\Exception\DeleteMultipleObjectsException;
 use Aws\S3\Exception\S3Exception;
@@ -11,21 +10,20 @@ use League\Flysystem\Adapter\AbstractAdapter;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Config;
 use League\Flysystem\Util;
-use RecursiveArrayIterator;
-use RecursiveIteratorIterator;
 
 class AwsS3Adapter extends AbstractAdapter
 {
+
     const PUBLIC_GRANT_URI = 'http://acs.amazonaws.com/groups/global/AllUsers';
 
     /**
      * @var array
      */
     protected static $resultMap = [
-        'Body' => 'contents',
+        'Body'          => 'contents',
         'ContentLength' => 'size',
-        'ContentType' => 'mimetype',
-        'Size' => 'size',
+        'ContentType'   => 'mimetype',
+        'Size'          => 'size',
     ];
 
     /**
@@ -69,7 +67,7 @@ class AwsS3Adapter extends AbstractAdapter
     public function __construct(S3Client $client, $bucket, $prefix = '', array $options = [])
     {
         $this->s3Client = $client;
-        $this->bucket = $bucket;
+        $this->bucket   = $bucket;
         $this->setPathPrefix($prefix);
         $this->options = $options;
     }
@@ -99,7 +97,7 @@ class AwsS3Adapter extends AbstractAdapter
      *
      * @param string $path
      * @param string $contents
-     * @param Config $config   Config object
+     * @param Config $config Config object
      *
      * @return false|array false on failure file meta data on success
      */
@@ -113,7 +111,7 @@ class AwsS3Adapter extends AbstractAdapter
      *
      * @param string $path
      * @param string $contents
-     * @param Config $config   Config object
+     * @param Config $config Config object
      *
      * @return false|array false on failure file meta data on success
      */
@@ -154,7 +152,7 @@ class AwsS3Adapter extends AbstractAdapter
             'deleteObject',
             [
                 'Bucket' => $this->bucket,
-                'Key' => $location,
+                'Key'    => $location,
             ]
         );
 
@@ -173,7 +171,7 @@ class AwsS3Adapter extends AbstractAdapter
     public function deleteDir($dirname)
     {
         try {
-            $prefix = $this->applyPathPrefix($dirname).'/';
+            $prefix = $this->applyPathPrefix($dirname) . '/';
             $this->s3Client->deleteMatchingObjects($this->bucket, $prefix);
         } catch (DeleteMultipleObjectsException $exception) {
             return false;
@@ -192,7 +190,7 @@ class AwsS3Adapter extends AbstractAdapter
      */
     public function createDir($dirname, Config $config)
     {
-        return $this->upload($dirname.'/', '', $config);
+        return $this->upload($dirname . '/', '', $config);
     }
 
     /**
@@ -237,14 +235,14 @@ class AwsS3Adapter extends AbstractAdapter
      */
     public function listContents($directory = '', $recursive = false)
     {
-        $prefix = $this->applyPathPrefix(rtrim($directory, '/').'/');
+        $prefix  = $this->applyPathPrefix(rtrim($directory, '/') . '/');
         $options = ['Bucket' => $this->bucket, 'Prefix' => ltrim($prefix, '/')];
 
         if ($recursive === false) {
             $options['Delimiter'] = '/';
         }
 
-        $listing = $this->retrievePaginatedListing($options);
+        $listing    = $this->retrievePaginatedListing($options);
         $normalizer = [$this, 'normalizeResponse'];
         $normalized = array_map($normalizer, $listing);
 
@@ -259,7 +257,7 @@ class AwsS3Adapter extends AbstractAdapter
     protected function retrievePaginatedListing(array $options)
     {
         $resultPaginator = $this->s3Client->getPaginator('ListObjects', $options);
-        $listing = [];
+        $listing         = [];
 
         foreach ($resultPaginator as $result) {
             $listing = array_merge($listing, $result->get('Contents') ?: [], $result->get('CommonPrefixes') ?: []);
@@ -281,7 +279,7 @@ class AwsS3Adapter extends AbstractAdapter
             'headObject',
             [
                 'Bucket' => $this->bucket,
-                'Key' => $this->applyPathPrefix($path),
+                'Key'    => $this->applyPathPrefix($path),
             ]
         );
 
@@ -342,7 +340,7 @@ class AwsS3Adapter extends AbstractAdapter
      *
      * @param string   $path
      * @param resource $resource
-     * @param Config   $config   Config object
+     * @param Config   $config Config object
      *
      * @return array|false false on failure file meta data on success
      */
@@ -356,7 +354,7 @@ class AwsS3Adapter extends AbstractAdapter
      *
      * @param string   $path
      * @param resource $resource
-     * @param Config   $config   Config object
+     * @param Config   $config Config object
      *
      * @return array|false false on failure file meta data on success
      */
@@ -380,10 +378,10 @@ class AwsS3Adapter extends AbstractAdapter
         $command = $this->s3Client->getCommand(
             'copyObject',
             [
-                'Bucket' => $this->bucket,
-                'Key' => $this->applyPathPrefix($newpath),
-                'CopySource' => urlencode($this->bucket.'/'.$this->applyPathPrefix($path)),
-                'ACL' => $visibility === AdapterInterface::VISIBILITY_PUBLIC ? 'public-read' : 'private',
+                'Bucket'     => $this->bucket,
+                'Key'        => $this->applyPathPrefix($newpath),
+                'CopySource' => urlencode($this->bucket . '/' . $this->applyPathPrefix($path)),
+                'ACL'        => $visibility === AdapterInterface::VISIBILITY_PUBLIC ? 'public-read' : 'private',
             ]
         );
 
@@ -429,7 +427,7 @@ class AwsS3Adapter extends AbstractAdapter
             'getObject',
             [
                 'Bucket' => $this->bucket,
-                'Key' => $this->applyPathPrefix($path),
+                'Key'    => $this->applyPathPrefix($path),
             ]
         );
 
@@ -457,8 +455,8 @@ class AwsS3Adapter extends AbstractAdapter
             'putObjectAcl',
             [
                 'Bucket' => $this->bucket,
-                'Key' => $this->applyPathPrefix($path),
-                'ACL' => $visibility === AdapterInterface::VISIBILITY_PUBLIC ? 'public-read' : 'private',
+                'Key'    => $this->applyPathPrefix($path),
+                'ACL'    => $visibility === AdapterInterface::VISIBILITY_PUBLIC ? 'public-read' : 'private',
             ]
         );
 
@@ -514,11 +512,11 @@ class AwsS3Adapter extends AbstractAdapter
             'getObjectAcl',
             [
                 'Bucket' => $this->bucket,
-                'Key' => $this->applyPathPrefix($path),
+                'Key'    => $this->applyPathPrefix($path),
             ]
         );
 
-        $result = $this->s3Client->execute($command);
+        $result     = $this->s3Client->execute($command);
         $visibility = AdapterInterface::VISIBILITY_PRIVATE;
 
         foreach ($result->get('Grants') as $grant) {
@@ -546,9 +544,9 @@ class AwsS3Adapter extends AbstractAdapter
      */
     protected function upload($path, $body, Config $config)
     {
-        $key = $this->applyPathPrefix($path);
+        $key     = $this->applyPathPrefix($path);
         $options = $this->getOptionsFromConfig($config);
-        $acl = isset($options['ACL']) ? $options['ACL'] : 'private';
+        $acl     = isset($options['ACL']) ? $options['ACL'] : 'private';
 
         if (!isset($options['ContentType']) && is_string($body)) {
             $options['ContentType'] = Util::guessMimeType($path, $body);
@@ -608,7 +606,11 @@ class AwsS3Adapter extends AbstractAdapter
      */
     protected function normalizeResponse(array $response, $path = null)
     {
-        $result = ['path' => $path ?: $this->removePathPrefix(isset($response['Key']) ? $response['Key'] : $response['Prefix'])];
+        $result = [
+            'path' => $path ?: $this->removePathPrefix(
+                isset($response['Key']) ? $response['Key'] : $response['Prefix']
+            ),
+        ];
         $result = array_merge($result, Util::pathinfo($result['path']));
 
         if (isset($response['LastModified'])) {

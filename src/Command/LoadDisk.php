@@ -5,7 +5,6 @@ use Anomaly\EncryptedFieldType\EncryptedFieldTypePresenter;
 use Anomaly\FilesModule\Disk\Adapter\AdapterFilesystem;
 use Anomaly\FilesModule\Disk\Contract\DiskInterface;
 use Aws\S3\S3Client;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\FilesystemManager;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\MountManager;
@@ -18,7 +17,7 @@ use League\Flysystem\MountManager;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\S3AdapterExtension\Command
  */
-class LoadDisk implements SelfHandling
+class LoadDisk
 {
 
     /**
@@ -67,7 +66,7 @@ class LoadDisk implements SelfHandling
                             'anomaly.extension.s3_adapter::region',
                             $this->disk->getSlug()
                         )->getValue(),
-                        'version'     => '2006-03-01'
+                        'version'     => '2006-03-01',
                     ]
                 ),
                 $configuration->get(
