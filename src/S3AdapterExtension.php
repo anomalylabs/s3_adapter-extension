@@ -1,9 +1,9 @@
 <?php namespace Anomaly\S3AdapterExtension;
 
+use Anomaly\FilesModule\Disk\Adapter\AdapterExtension;
 use Anomaly\FilesModule\Disk\Adapter\Contract\AdapterInterface;
 use Anomaly\FilesModule\Disk\Contract\DiskInterface;
 use Anomaly\S3AdapterExtension\Command\LoadDisk;
-use Anomaly\Streams\Platform\Addon\Extension\Extension;
 
 /**
  * Class S3AdapterExtension
@@ -13,7 +13,7 @@ use Anomaly\Streams\Platform\Addon\Extension\Extension;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\S3AdapterExtension
  */
-class S3AdapterExtension extends Extension implements AdapterInterface
+class S3AdapterExtension extends AdapterExtension implements AdapterInterface
 {
 
     /**
