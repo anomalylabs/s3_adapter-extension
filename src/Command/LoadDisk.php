@@ -56,11 +56,11 @@ class LoadDisk
         $driver = new AdapterFilesystem(
             $this->disk,
             new AwsS3Adapter(
-                new S3Client(
+                $client = new S3Client(
                     [
                         'credentials' => [
-                            'key'    => $key->decrypted(),
-                            'secret' => $secret->decrypted(),
+                            'key'    => $key->decrypt(),
+                            'secret' => $secret->decrypt(),
                         ],
                         'region'      => $configuration->get(
                             'anomaly.extension.s3_adapter::region',
@@ -69,12 +69,15 @@ class LoadDisk
                         'version'     => '2006-03-01',
                     ]
                 ),
-                $configuration->get(
+                $bucket = $configuration->get(
                     'anomaly.extension.s3_adapter::bucket',
                     $this->disk->getSlug()
                 )->getValue(),
                 $prefix ? $this->disk->getSlug() : null
-            )
+            ),
+            [
+                'base_url' => $client->getObjectUrl($bucket, $prefix ? $this->disk->getSlug() : null),
+            ]
         );
 
         $manager->mountFilesystem($this->disk->getSlug(), $driver);
