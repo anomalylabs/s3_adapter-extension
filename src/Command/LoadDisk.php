@@ -84,6 +84,11 @@ class LoadDisk
             $this->disk->getSlug()
         )->getValue();
 
+        $visibility = $configuration->get(
+            'anomaly.extension.s3_adapter::visibility',
+            $this->disk->getSlug()
+        )->getValue();
+
         $config->set(
             'filesystems.disks.' . $this->disk->getSlug(),
             [
@@ -126,6 +131,7 @@ class LoadDisk
             ),
             [
                 'base_url' => $baseUrl,
+                'visibility' => $visibility
             ]
         );
 
