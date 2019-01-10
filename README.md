@@ -14,7 +14,6 @@ You should be able to setup a new S3 disk from the CMS via Files > Disks > New D
 If you'd prefer to swap out the default local driver seamlessly and keep all of your existing folders you can do so via a migration. Your migration file may look something like this:
 
 ```php
-
 use Anomaly\ConfigurationModule\Configuration\ConfigurationRepository;
 use Anomaly\FilesModule\Disk\DiskRepository;
 use Anomaly\Streams\Platform\Database\Migration\Migration;
