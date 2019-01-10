@@ -26,4 +26,8 @@ return [
         'instructions' => 'Specify the CloudFront domain if available.',
         'placeholder'  => 'a17v5vkqn7ysat.cloudfront.net',
     ],
+    'visibility' => [
+        'label'        => 'File Visibility',
+        'instructions' => 'Choose the default visibility for file uploads.',
+    ],
 ];
