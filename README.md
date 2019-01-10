@@ -88,7 +88,7 @@ class SetupS3DiskConfiguration extends Migration
 
 ```
 
-The configuration is pulled from the standard [laravel filesystem configuration](https://laravel.com/docs/5.7/filesystem#configuration) and published to the `default_configuration_configuration` table. Make sure you've populated the configuration in `config/filesystem.php` before running your migration.
+The configuration is pulled from the standard [laravel filesystem configuration](https://laravel.com/docs/5.7/filesystem#configuration) and published to the `default_configuration_configuration` table. Make sure you've populated the `s3` key in `config/filesystem.php` with your AWS S3 bucket API credentials before running your migration.
 
 ## Usage
 After your S3 disk is set-up, usage is the same as any other disk adapter. Refer to the [pyro documentation](https://pyrocms.com/documentation/files-module/2.4/integration/laravel-filesystem)
