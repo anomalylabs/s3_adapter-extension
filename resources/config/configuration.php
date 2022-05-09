@@ -1,5 +1,7 @@
 <?php
 
+use League\Flysystem\AdapterInterface;
+
 return [
     'access_key'  => [
         'required' => true,
@@ -34,4 +36,14 @@ return [
     ],
     'prefix'      => 'anomaly.field_type.text',
     'cloud_front' => 'anomaly.field_type.text',
+    'visibility'  => [
+        'required' => true,
+        'type' => 'anomaly.field_type.select',
+        'config' => [
+            'options' => [
+                AdapterInterface::VISIBILITY_PRIVATE => 'Private',
+                AdapterInterface::VISIBILITY_PUBLIC => 'Public'
+            ]
+        ]
+    ],
 ];
